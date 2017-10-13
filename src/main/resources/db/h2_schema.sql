@@ -13,7 +13,7 @@ create table oauth_client_details (
 );
 
 CREATE TABLE oauth_resources (
-  resouce_id VARCHAR (256) PRIMARY KEY,
+  resource_id VARCHAR (256) PRIMARY KEY,
   name VARCHAR (256),
 );
 
@@ -32,25 +32,25 @@ CREATE TABLE uc_user (
 );
 
 CREATE TABLE uc_role (
-  id INTEGER (11) PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR (256),
   desc VARCHAR (256),
 );
 
 CREATE TABLE uc_authority (
-  id INTEGER(11) PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR (256),
   desc VARCHAR (256),
 );
 
 CREATE TABLE uc_user_role (
-  id INTEGER (11) PRIMARY KEY ,
+  id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   role_id INTEGER ,
   user_id INTEGER ,
 );
 
 CREATE TABLE uc_role_auth(
-  id INTEGER (11) PRIMARY KEY ,
+  id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   role_id INTEGER ,
   auth_id INTEGER ,
 );
