@@ -1,22 +1,24 @@
-package org.iodsp.uaa.entity;
+package org.iodsp.uaa.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.iodsp.uaa.entity.Role;
+
+import java.util.List;
 
 @Getter
 @Setter
 public class User {
-    public static final Integer USER_ENABLE = 1;
-    public static final Integer USER_LOCKED = 1;
-    public static final Integer USER_EXPIRED = 1;
     private Integer id;
     private String name;
     private String password;
     private Integer enable = 1;
     private Integer lock = 0;
     private Integer expired = 0;
+    private List<Integer> roleIds;
+    private List<Role> roles;
 
-    public User(org.iodsp.uaa.dto.User user) {
+    public User(org.iodsp.uaa.entity.User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.password = user.getPassword();

@@ -11,8 +11,6 @@ import org.iodsp.uaa.service.UcAuthoritySerivce;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class Authority {
+public class Authority extends Controller {
 
     private final Logger logger = LoggerFactory.getLogger(Authority.class);
 
@@ -69,23 +67,11 @@ public class Authority {
                              @RequestParam(required = false) Integer isAll) {
         ReturnObject returnObject = new ReturnObject();
 
-        if (page == null) {
-            page = 1;
-        }
-        if (pageSize == null) {
-            pageSize = 10;
-        }
+        PageList pageList = this.getListPage(() -> {
+            return authorityMapper.find();
+        }, (isAll != null && isAll == 1), page, pageSize);
 
-        List<org.iodsp.uaa.entity.Authority> authoritys;
-        Long total = 0L;
-        if (isAll == null || isAll == 0) {
-            PageHelper.startPage(page, pageSize, true);
-            authoritys = authorityMapper.find();
-            total = ((Page) authoritys).getTotal();
-        } else {
-            authoritys = authorityMapper.find();
-        }
-
+        List<org.iodsp.uaa.entity.Authority> authoritys = (List<org.iodsp.uaa.entity.Authority>) pageList.getList();
         HashMap<Integer, org.iodsp.uaa.dto.Authority> authorityHashMap;
         try {
             authorityHashMap = ucAuthoritySerivce.list(authoritys);
@@ -101,8 +87,6 @@ public class Authority {
             result.add(auth);
         });
 
-        PageList pageList = new PageList();
-        pageList.setTotal(total);
         pageList.setList(result);
         returnObject.setData(pageList);
         return returnObject;

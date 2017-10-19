@@ -23,6 +23,9 @@ public interface AuthorityMapper {
     @Select("select * from uc_authority")
     List<Authority> find();
 
+    @Select("select * from uc_authority where id in (${ids})")
+    List<Authority> findByIds(@Param("ids") String ids);
+
     @Delete("DELETE from uc_authority where id in (${ids})")
     int delete(@Param("ids") String ids);
 }

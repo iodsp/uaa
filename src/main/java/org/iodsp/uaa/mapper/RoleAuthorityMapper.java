@@ -40,6 +40,13 @@ public interface RoleAuthorityMapper {
     })
     List<RoleAuthority> findByAuthIds(@Param("authId") String authId);
 
+    @Select("select * from uc_role_auth where role_id in (${roleIds})")
+    @Results({
+            @Result(property = "roleId", column = "role_id"),
+            @Result(property = "authId", column = "auth_id")
+    })
+    List<RoleAuthority> findByRoleIds(@Param("roleIds") String roleIds);
+
     @Delete("DELETE from uc_role_auth where id in (${ids})")
     int delete(String ids);
 

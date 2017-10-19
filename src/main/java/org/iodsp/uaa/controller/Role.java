@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-public class Role {
+public class Role extends Controller {
 
     private final Logger logger = LoggerFactory.getLogger(Role.class);
 
@@ -68,26 +68,9 @@ public class Role {
     public ReturnObject list(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer pageSize,
                              @RequestParam(required = false) Integer isAll) {
         ReturnObject returnObject = new ReturnObject();
-
-        if (page == null) {
-            page = 1;
-        }
-        if (pageSize == null) {
-            pageSize = 10;
-        }
-
-        List<org.iodsp.uaa.entity.Role> roles;
-        Long total = 0L;
-        if (isAll == null || isAll == 0) {
-            PageHelper.startPage(page, pageSize, true);
-            roles = roleMapper.find();
-            total = ((Page) roles).getTotal();
-        } else {
-            roles = roleMapper.find();
-        }
-        PageList pageList = new PageList();
-        pageList.setTotal(total);
-        pageList.setList(roles);
+        PageList pageList = this.getListPage(() -> {
+            return roleMapper.find();
+        }, (isAll != null && isAll == 1), page, pageSize);
         returnObject.setData(pageList);
         return returnObject;
     }

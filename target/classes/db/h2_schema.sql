@@ -43,7 +43,7 @@ CREATE TABLE uc_authority (
   desc VARCHAR (256),
 );
 
-CREATE TABLE uc_user_role (
+CREATE TABLE uc_role_user (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   role_id INTEGER ,
   user_id INTEGER ,

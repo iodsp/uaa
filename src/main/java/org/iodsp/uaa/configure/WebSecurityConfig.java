@@ -1,6 +1,7 @@
 package org.iodsp.uaa.configure;
 
 import org.iodsp.uaa.service.UcUserSerivce;
+import org.iodsp.uaa.service.UcUserSerivceOauth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    UcUserSerivce ucUserSerivce;
+    UcUserSerivceOauth ucUserSerivce;
 
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;

@@ -8,7 +8,8 @@ public enum UserExceptionEnums implements ExceptionEnums {
     ADD_EXCEPTION(10031, "添加用户失败"),
     INVALID_USER_EXCEPTION(10032, "用户信息不存在"),
     NOSUCH_USER_EXCEPTION(10033, "用户信息不存在"),
-    HAS_USER_EXCEPTION(10034, "已经存在用户失败");
+    HAS_USER_EXCEPTION(10034, "已经存在用户失败"),
+    PARAM_EXCEPTION(10035, "参数错误");
 
     private Integer code;
 
