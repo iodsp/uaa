@@ -92,10 +92,6 @@
                     <input type="password" placeholder="Password" class="form-control input-lg" id="password" name="password"  required="" />
 
 
-                    <input type="hidden"
-                           name="${_csrf.parameterName}"
-                           value="${_csrf.token}" />
-
                     <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
                     <div>
                         <h3>Valid accounts</h3>
@@ -120,7 +116,6 @@
                 </form>
 
 
-            </section>
         </div>
 
         <div class="col-md-4"></div>
@@ -131,9 +126,6 @@
 
 
 </div> <!-- /container -->
-
-
-
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>

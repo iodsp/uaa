@@ -38,13 +38,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.formLogin().loginPage("/login").permitAll()
                 .and().httpBasic()
-                .and().csrf().ignoringAntMatchers("/client/**", "/h2-console/**", "/user/**", "/resource/**", "/scope/**", "/role/**"
-                    , "/authority/**", "/user/**")
-                .and().headers().frameOptions().sameOrigin()
+                .and().csrf().disable()
+                .headers().frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/static/**", "/fonts/**", "/js/**", "/css/**", "/h2-console/**", "/client/**",
-                        "/role/**", "/authority/**", "/resource/**", "/scope/**", "/user/**")
+                .antMatchers("/static/**", "/fonts/**", "/js/**", "/css/**", "/h2-console/**")
                 .permitAll()
                 .anyRequest().authenticated();
     }
