@@ -111,7 +111,7 @@
                 <artifactId>docker-maven-plugin</artifactId>
                 <version>0.4.12</version>
                 <configuration>
-                    <imageName>uaa</imageName>
+                    <imageName>iodsp/uaa</imageName>
                     <baseImage>openjdk:8</baseImage>
                     <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
                     <resources>
